@@ -1,0 +1,157 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  position: fixed;
+}
+.navbar {
+  overflow: hidden;
+  background-color: pink;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.logo{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: large;
+  font-style: bold;
+  font-weight: 40px;
+  padding-left: 10px;
+}
+.Video_Background{
+  position: fixed;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+} 
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: black;
+  text-align: right;
+  padding: 19px 16px;
+  text-decoration: none;
+  padding-top: 20px;
+  position:relative;
+  z-index: 1;
+  margin-top: 20px;
+}
+
+.navbar a:hover {
+  background-color: black;
+  border-radius: 0.5rem;
+  color: whitesmoke;
+}
+
+.navbar .logo {
+  float: left;
+  padding: 14px 22px;
+  font-size: 25px;
+  color: blue;
+  margin-top: 15px;
+}
+
+.center-div{
+  display:inline-block ;
+  justify-content: center;
+  align-items: center;
+  padding: 200px 200px 200px 320px;
+  text-align: center;
+}
+
+.center-div h1{
+  font-size: 77px;
+  font-weight: 100;
+  font-family: 'Times New Roman', Times, serif;
+  padding-bottom: 5px;
+  color: white;
+}
+
+.center-div p{
+  padding-bottom: 30px;
+  font-size: 18px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* color:rgb(118, 115, 115);   */
+  color: whitesmoke ;
+}
+
+.navbar-links{
+  text-align: center;
+}
+.navbar .login-btn {
+  float: right;
+  background-color: black;
+  color: white;
+  border: 1px solid white ;
+  padding: 10px 20px ;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  
+}
+
+.navbar .login-btn:hover {
+  background-color: gray;
+}
+
+.navbar .signup-btn {
+  float: right;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 25px;
+}
+.navbar .signup-btn:hover {
+  background-color: grey;
+}
+
+.main-btn {
+  border-radius: 1rem;
+  background-color: rgba(44, 44, 220, 0.874);
+  border: 1px solid white;;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px 5px 10px 5px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  justify-content: center;
+  justify-items: center;
+}
+
+.main-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.main-btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.main-btn:hover span {
+  padding-right: 25px;
+}
+
+.main-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+
+}

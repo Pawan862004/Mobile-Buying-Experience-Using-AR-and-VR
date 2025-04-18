@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - Balloons Only</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .balloon {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: floatUp 4s ease-in forwards;
+      z-index: 50;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-300px); opacity: 0; }
+    }
+
+    #success-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 999;
+      color: white;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #success-overlay.show {
+      display: flex;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="max-w-5xl mx-auto p-6 mt-10 bg-white shadow-md rounded-lg">
+    <h1 class="text-2xl font-bold mb-6 text-center">Checkout</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2 space-y-8">
+        <div>
+          <h2 class="text-xl font-semibold mb-4">Shipping Information</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" id="fullname" placeholder="Full Name" class="border p-3 rounded w-full" />
+            <input type="text" id="phone" placeholder="Phone Number" class="border p-3 rounded w-full" />
+            <input type="email" id="email" placeholder="Email Address" class="border p-3 rounded w-full" />
+            <input type="text" id="pin" placeholder="Pin Code" class="border p-3 rounded w-full" />
+            <input type="text" id="address1" placeholder="Address Line 1" class="border p-3 rounded w-full md:col-span-2" />
+            <input type="text" id="address2" placeholder="Address Line 2 (Optional)" class="border p-3 rounded w-full md:col-span-2" />
+            <input type="text" id="city" placeholder="City" class="border p-3 rounded w-full" />
+            <input type="text" id="state" placeholder="State" class="border p-3 rounded w-full" />
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold mb-4">Payment Method</h2>
+          <div class="space-y-4">
+            <label class="flex items-center gap-2">
+              <input type="radio" name="payment" class="accent-blue-600" checked />
+              <span>Credit/Debit Card</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="payment" class="accent-blue-600" />
+              <span>UPI (Google Pay, PhonePe, etc.)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="payment" class="accent-blue-600" />
+              <span>Cash on Delivery</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
+
+        <div class="flex gap-4 mb-4">
+          <img src="ph5.jfif" alt="Product" class="w-20 h-20 object-contain border rounded" />
+          <div>
+            <p class="font-medium">Nord 4 5G (8+256 GB)</p>
+            <p class="text-sm text-gray-500">Snapdragon 7+ Gen 3</p>
+            <p class="text-sm text-green-600 mt-1">In Stock</p>
+          </div>
+        </div>
+
+        <div class="border-t pt-4 text-sm text-gray-600">
+          <div class="flex justify-between mb-2">
+            <span>Item Total</span>
+            <span>₹24,999</span>
+          </div>
+          <div class="flex justify-between mb-2">
+            <span>Shipping</span>
+            <span class="text-green-600">Free</span>
+          </div>
+          <div class="flex justify-between font-semibold text-lg border-t pt-2">
+            <span>Total</span>
+            <span>₹24,999</span>
+          </div>
+        </div>
+
+        <button onclick="placeOrder()" class="mt-6 w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition">
+          Place Order
+        </button>
+
+        <a id="track-order-link" href="Track Order.html" class="mt-4 text-blue-600 hover:text-blue-800 hidden">
+          Track Your Order
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="success-overlay">
+    <h2 class="text-4xl font-bold mb-2 text-yellow-300">🎉 Congratulations! 🎉</h2>
+    <h3 class="text-2xl font-semibold mb-4 text-green-400">Order Successfully Placed!</h3>
+    <p class="text-lg text-white">Thank you for shopping with us!</p>
+  </div>
+
+  <script>
+    // Function to check if an email is valid
+    function isValidEmail(email) {
+      const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return regex.test(email);
+    }
+
+    // Function to check if the phone number is valid (assuming 10-digit phone number for India)
+    function isValidPhone(phone) {
+      const regex = /^[0-9]{10}$/;
+      return regex.test(phone);
+    }
+
+    function getRandomColor() {
+      const colors = ['#FF5733', '#33FF57', '#3357FF', '#F1C40F', '#9B59B6', '#E74C3C', '#1F8D7A'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      balloon.style.backgroundColor = getRandomColor();
+      balloon.style.left = Math.random() * window.innerWidth + 'px';
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 10000);
+    }
+
+    function placeOrder() {
+      const fields = ['fullname', 'phone', 'email', 'pin', 'address1', 'city', 'state'];
+      let isValid = true;
+
+      // Loop through each field and check if it is empty
+      fields.forEach(id => {
+        const field = document.getElementById(id);
+        if (!field.value.trim()) {
+          isValid = false;
+          field.classList.add('border-red-500'); // Add red border for empty fields
+        } else {
+          field.classList.remove('border-red-500'); // Remove red border if filled
+        }
+      });
+
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+
+      // Check if email is valid
+      if (!isValidEmail(email)) {
+        isValid = false;
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      // Check if phone number is valid
+      if (!isValidPhone(phone)) {
+        isValid = false;
+        alert("Please enter a valid 10-digit phone number.");
+        return;
+      }
+
+      // If not valid, show an alert and return
+      if (!isValid) {
+        alert("Please fill in all required fields correctly.");
+        return;
+      }
+
+      // Show success overlay if all fields are valid
+      const overlay = document.getElementById('success-overlay');
+      overlay.classList.add('show');
+
+      // Create balloons for celebration
+      for (let i = 0; i < 15; i++) {
+        setTimeout(createBalloon, i * 300);
+      }
+
+      // Hide the overlay after 2 seconds and show the track order link
+      setTimeout(() => {
+        overlay.classList.remove('show');
+        document.getElementById('track-order-link').classList.remove('hidden');
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

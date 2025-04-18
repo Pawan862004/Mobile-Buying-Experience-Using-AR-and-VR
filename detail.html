@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background Image */
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background: url('https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700322532.jpg') no-repeat center;
+            background-size: cover;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            max-height: 450px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .left {
+            flex: 1;
+            background: url('https://i.pinimg.com/736x/bc/33/ff/bc33ff39753dbf31732287b344c9c0df--awesome-logos-be-creative.jpg') no-repeat center;
+            background-size: cover;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .left::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .left h2, .left p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .right {
+            flex: 1;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .right h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-box {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Error & Success Messages */
+        .message {
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+            text-align: center;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .success-message {
+            color: green;
+        }
+
+        .remember-me {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .remember-me a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .remember-me a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            background: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                max-height: none;
+            }
+
+            .left {
+                height: 250px;
+                padding: 20px;
+            }
+
+            .right {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Left Side (Full Image Background) -->
+        <div class="left">
+            <h2></h2>
+            <p></p>
+        </div>
+
+        <!-- Right Side (Login Form) -->
+        <div class="right">
+            <h2>Login Account</h2>
+            <div class="input-box">
+                <input type="email" id="email" placeholder="Email ID" oninput="hideMessages()">
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" oninput="hideMessages()">
+                <p class="message error-message" id="error-message"> Incorrect email or password. Please re-enter.</p>
+                <p class="message success-message" id="success-message">✅ Login successful!</p>
+            </div>
+            <div class="remember-me">
+                <label><input type="checkbox"> Keep me signed in</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button class="btn" onclick="validateLogin()">LOGIN</button>
+        
+            <!-- New Account Link -->
+            <p style="text-align: center; margin-top: 10px;">
+                Don't have an account? <a href="signuppage.html" style="color: #007bff; text-decoration: none;">Create New Account</a>
+            </p>
+        </div>
+    <script>
+        function validateLogin() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var errorMessage = document.getElementById("error-message");
+            var successMessage = document.getElementById("success-message");
+    
+            // Correct Credentials
+            var correctEmail = "pawan123@gmail.com";
+            var correctPassword = "123";
+    
+            // Reset messages
+            errorMessage.style.display = "none";
+            successMessage.style.display = "none";
+    
+            if (email === correctEmail && password === correctPassword) {
+                successMessage.style.display = "block"; // Show success message
+                setTimeout(function() {
+                    window.location.href = "dashboard.html"; // Redirect to dashboard
+                }, 1000); // Redirect after 1 second
+            } else {
+                errorMessage.style.display = "block"; // Show error message
+            }
+        }
+    
+        // Hide both error and success messages when user starts typing
+        function hideMessages() {
+            document.getElementById("error-message").style.display = "none";
+            document.getElementById("success-message").style.display = "none";
+        }
+    </script>
+    
+</body>
+</html>

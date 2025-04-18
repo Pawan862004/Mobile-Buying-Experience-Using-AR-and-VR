@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 10px;
+            padding: 20px;
+            flex: 1 1 300px;
+            text-align: center;
+        }
+        .card h3 {
+            margin-bottom: 15px;
+        }
+        .card p {
+            color: #555;
+        }
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .card a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Customer Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h3>Order Now</h3>
+            <p>All your essentials here.</p>
+            <a href="#">Click here</a>
+        </div>
+        <div class="card">
+            <h3>Order History</h3>
+            <p>View your past orders and their status.</p>
+            <a href="#">View Orders</a>
+        </div>
+        <div class="card">
+            <h3>Cart</h3>
+            <p>Manage items currently in your cart.</p>
+            <a href="#">View Cart</a>
+        </div>
+        <div class="card">
+            <h3>Payment Details</h3>
+            <p> view transaction history.</p>
+            <a href="#">Payment Info</a>
+        </div>
+        <div class="card">
+            <h3>Profile Settings</h3>
+            <p>Manage your account settings and personal information.</p>
+            <a href="#">Edit Profile</a>
+        </div>
+    </div>
+</body>
+</html>

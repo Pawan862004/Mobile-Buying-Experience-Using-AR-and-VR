@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
+  }
+  .navbar {
+    overflow: hidden;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .logo{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
+    font-style: bold;
+    font-weight: 40px;
+    padding-left: 10px;
+  }
+  .Video_Background{
+    position: fixed;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  } 
+  
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: gray;
+    text-align: right;
+    padding: 19px 16px;
+    text-decoration: none;
+    padding-top: 20px;
+    position:relative;
+    z-index: 1;
+    margin-top: 20px;
+  }
+  
+  .navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    color: whitesmoke;
+  }
+  
+  .navbar .logo {
+    float: left;
+    padding: 14px 22px;
+    font-size: 25px;
+    color: white;
+    margin-top: 15px;
+  }
+  .navbar .switch {
+    position: right;
+    right: 20px; /* Distance from the right side of the navbar */
+    top: 50%; /* Center it vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+}
+
+.center-part{
+   color: white;
+   margin: 0;
+   padding: 200px 350px 200px 410px;
+   text-align: center;
+}
+
+.center-part h1,p{
+    font-family:serif;
+}
+
+
+input[type="date"] { 
+  background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6));
+  color:black;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
+}
+
+input[type=date]:required:invalid::-webkit-datetime-edit {
+  color: black;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+  color:black;
+}
+
+
+.search_input {
+  width: 700px;
+  padding: 12px 24px;
+  background-color: black;
+  transition: transform 250ms ease-in-out;
+  font-size: 14px;
+  line-height: 18px;
+  color:black;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  background-position: 95% center;
+  border-radius: 50px;
+  border: 1px solid #575756;
+  transition: all 250ms ease-in-out;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  
+  }
+
+
+  .search_input placeholder {
+   color: blue;
+   text-transform: uppercase;
+   letter-spacing: 1.5px;
+  }
+
+  .search_input:hover , .search_input:focus{
+    padding: 12px 0;
+    outline: 0;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #575756;
+    border-radius: 0;
+    background-position: 100% center;
+  }

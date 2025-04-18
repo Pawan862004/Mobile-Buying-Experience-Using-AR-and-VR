@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <title>GalaxyPoint</title>
+    <link rel="stylesheet" href="apod.css">
+    <link href = 'https://fonts.googleapis.com/css?family=Nunito:400,300' rel = 'stylesheet' type = 'text/css'>  
+    <link rel = "stylesheet"  
+            href =  
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Tech Titans</div>
+        <div class="navbar-links">
+            <a href="Index.html">Home</a>
+            <a href="https://webqr.com/" target="_blank">Scan</a>
+        </div>
+    <video class="Video_Background" autoplay muted loop>
+        <source src="InShot_20250208_044215950.mp4" type="video/mp4">
+    </video>
+    <div class="center-part">
+       <h1>Thanks for visiting us!!</h1>
+       <p>How I can help you </p>
+      
+<input placeholder="Ask your query" class="search_input" type="search" id="search_input" required />
+
+
+<button type="button" id="search_button">Send</button>
+
+<script>
+ 
+  document.getElementById('search_button').addEventListener('click', function() {
+    const searchValue = document.getElementById('search_input').value;
+    
+    if (searchValue) {
+     
+      const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchValue)}`;
+      
+      
+      window.location.href = searchUrl; 
+    } else {
+      alert('Please enter a search term.');
+    }
+  });
+
+  
+  document.getElementById('search_input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      document.getElementById('search_button').click(); 
+    }
+  });
+  function toggleButton() {
+            const button = document.getElementById('toggleButton');
+            if (button.classList.contains('off')) {
+                button.classList.remove('off');
+                button.classList.add('on');
+                button.textContent = 'ON';  // Change button text to ON
+            } else {
+                button.classList.remove('on');
+                button.classList.add('off');
+                button.textContent = 'OFF';  // Change button text to OFF
+            }
+        }
+</script>
+    </div>
+</body>
+</html>

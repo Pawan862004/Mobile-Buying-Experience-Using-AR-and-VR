@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - SmartShop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+  <style>
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; }
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slider-track img {
+      width: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 to-slate-800 text-white min-h-screen overflow-x-hidden">
+
+  <!-- 3D Background -->
+  <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
+  <!-- Header -->
+  <header class="text-center py-10">
+    <h1 class="text-5xl font-bold mb-2">About SmartShop</h1>
+    <p class="text-slate-400 text-lg">Revolutionizing the mobile phone buying experience</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-start">
+
+    <!-- Left: 3D View + Image Slider -->
+    <section class="space-y-6">
+      <!-- 3D Canvas Preview -->
+      <div class="aspect-[3/5] w-full bg-slate-900 rounded-2xl shadow-lg overflow-hidden">
+        <canvas id="phoneCanvas" class="w-full h-full"></canvas>
+      </div>
+
+      <!-- Image Slider -->
+      <div class="bg-slate-800 rounded-2xl overflow-hidden shadow-xl h-52 relative">
+        <div id="slider" class="slider-track h-full">
+          <img src="images.png" alt="Mobile 1">
+          <img src="https://via.placeholder.com/600x220?text=Mobile+2" alt="Mobile 2">
+          <img src="https://via.placeholder.com/600x220?text=Mobile+3" alt="Mobile 3">
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: Content Blocks -->
+    <section class="space-y-6">
+      <div class="bg-slate-800 p-6 rounded-2xl shadow-xl">
+        <h2 class="text-2xl font-bold mb-2">Who We Are</h2>
+        <p class="text-slate-300">At SmartShop, we're transforming how people shop for smartphones online — combining 3D viewing, seamless design, and expert guidance to help users find their perfect device.</p>
+      </div>
+      <div class="bg-slate-800 p-6 rounded-2xl shadow-xl">
+        <h2 class="text-2xl font-bold mb-2">What We Do</h2>
+        <p class="text-slate-300">We let customers explore phones from every angle in 3D, compare features side-by-side, and enjoy a frictionless shopping journey tailored for mobile users.</p>
+      </div>
+      <div class="bg-slate-800 p-6 rounded-2xl shadow-xl">
+        <h2 class="text-2xl font-bold mb-2">Why It Matters</h2>
+        <p class="text-slate-300">Phones are personal. Our platform puts the power in your hands — literally — with immersive views, smart recommendations, and secure checkout.</p>
+      </div>
+      <div class="bg-slate-800 p-6 rounded-2xl shadow-xl">
+        <h2 class="text-2xl font-bold mb-2">Why It Matters</h2>
+        <p class="text-slate-300">Phones are personal. Our platform puts the power in your hands — literally — with immersive views, smart recommendations, and secure checkout.</p>
+      </div>
+      <div class="bg-slate-800 p-6 rounded-2xl shadow-xl">
+        <h2 class="text-2xl font-bold mb-2">Why It Matters</h2>
+        <p class="text-slate-300">Phones are personal. Our platform puts the power in your hands — literally — with immersive views, smart recommendations, and secure checkout.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-20 text-center text-slate-500 text-sm">
+    &copy; <?php echo date("Y"); ?> SmartShop. All rights reserved.
+  </footer>
+
+  <!-- Phone 3D Viewer -->
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('phoneCanvas'), alpha: true });
+
+    function resizeRenderer() {
+      const canvas = renderer.domElement;
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', resizeRenderer);
+    resizeRenderer();
+
+    // Load the image you want as a texture
+    const textureLoader = new THREE.TextureLoader();
+const phoneTexture = textureLoader.load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd4Qxdb8gaQNwPei8bKxnXreJHUn1zoLZqrA&s")
+    // Create the geometry and apply the texture
+    const geometry = new THREE.BoxGeometry(1.5, 3, 0.2);
+    const material = new THREE.MeshStandardMaterial({ map: phoneTexture, metalness: 0.6, roughness: 0.3 });
+    const phone = new THREE.Mesh(geometry, material);
+    scene.add(phone);
+
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(5, 5, 5).normalize();
+    scene.add(light);
+    camera.position.z = 5;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      phone.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+
+  <!-- Image Slider -->
+  <script>
+    const slider = document.getElementById("slider");
+    let index = 0;
+    const total = slider.children.length;
+    setInterval(() => {
+      index = (index + 1) % total;
+      slider.style.transform = `translateX(-${index * 100}%)`;
+    }, 3000);
+  </script>
+
+  <!-- 3D Background -->
+  <script>
+    const bgScene = new THREE.Scene();
+    const bgCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const bgRenderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bgCanvas'), alpha: true });
+    bgRenderer.setSize(window.innerWidth, window.innerHeight);
+    bgCamera.position.z = 5;
+
+    const bgParticles = new THREE.BufferGeometry();
+    const count = 1000;
+    const positions = new Float32Array(count * 3);
+    for (let i = 0; i < count * 3; i++) {
+      positions[i] = (Math.random() - 0.5) * 20;
+    }
+    bgParticles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const bgMaterial = new THREE.PointsMaterial({ color: 0x66ccff, size: 0.05 });
+    const points = new THREE.Points(bgParticles, bgMaterial);
+    bgScene.add(points);
+
+    function animateBg() {
+      requestAnimationFrame(animateBg);
+      points.rotation.y += 0.0005;
+      bgRenderer.render(bgScene, bgCamera);
+    }
+
+    window.addEventListener('resize', () => {
+      bgCamera.aspect = window.innerWidth / window.innerHeight;
+      bgCamera.updateProjectionMatrix();
+      bgRenderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    animateBg();
+  </script>
+
+</body>
+</html>

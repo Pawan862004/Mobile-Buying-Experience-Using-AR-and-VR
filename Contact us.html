@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Curtain Opening Effect */
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      background-color: #2c3e50; /* Soft Blue Color instead of black */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      perspective: 1000px; /* Create 3D space */
+      transition: background 1s ease-in-out;
+      position: relative;
+    }
+
+    /* Curtain */
+    .curtain-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      z-index: 1;
+    }
+
+    .curtain {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: #444;
+      transition: all 2s ease-out;
+    }
+
+    .left-curtain {
+      left: 0;
+    }
+
+    .right-curtain {
+      right: 0;
+    }
+
+    /* Transition Effect for Opening */
+    .opened .left-curtain {
+      transform: translateX(-100%);
+    }
+
+    .opened .right-curtain {
+      transform: translateX(100%);
+    }
+
+    /* Multicolor Gradient after curtain opens */
+    .multicolor-background {
+      background: linear-gradient(45deg, #ff6ec4, #7873f5, #4ade80);
+      background-size: 200% 200%;
+      animation: waveBackground 10s ease-in-out infinite;
+    }
+
+    @keyframes waveBackground {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 50% 100%; }
+      50% { background-position: 100% 50%; }
+      75% { background-position: 50% 0%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Content */
+    .parallax-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 1200px; /* Restrict width for larger screens */
+      margin: 0 auto;
+    }
+
+    /* Ensure the "Contact Us" text stays within the screen */
+    h1 {
+      font-size: 3rem;
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Fade in effect */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .fade-in-delay-1 { animation-delay: 0.3s; }
+    .fade-in-delay-2 { animation-delay: 0.6s; }
+    .fade-in-delay-3 { animation-delay: 0.9s; }
+    .fade-in-delay-4 { animation-delay: 1.2s; }
+
+    /* Input fields animation */
+    .input-field {
+      transition: all 0.3s ease;
+    }
+
+    .input-field:focus {
+      border-color: #4ade80;
+      box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+      outline: none;
+    }
+
+    /* Placeholder change on focus */
+    .input-field::placeholder {
+      transition: color 0.3s ease;
+    }
+
+    .input-field:focus::placeholder {
+      color: #4ade80;
+    }
+
+    /* Button hover effect */
+    .button-hover {
+      transition: all 0.3s ease;
+    }
+
+    .button-hover:hover {
+      background-color: #4ade80;
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(74, 222, 128, 0.3);
+    }
+
+    /* Input and button focus animation */
+    .input-field:focus, .button-hover:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body class="bg-opacity-80">
+  <!-- Curtain Effect Container -->
+  <div class="curtain-container">
+    <div class="curtain left-curtain"></div>
+    <div class="curtain right-curtain"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 py-8 parallax-content">
+    <h1 class="text-3xl font-bold text-center mb-10 text-white fade-in">Contact Us</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <!-- Team Members -->
+      <a href="alice.html" class="flex flex-col items-center fade-in fade-in-delay-1">
+        <div class="w-32 h-32 rounded-full overflow-hidden mb-4">
+          <img src="images (6).jfif" alt="Alice Johnson" class="w-full h-full object-cover transform transition-transform hover:scale-105">
+        </div>
+        <h2 class="text-xl font-semibold text-center">Alice Johnson</h2>
+        <p class="text-center text-sm text-gray-600">Project Manager</p>
+        <p class="text-center text-sm text-blue-500">alice@example.com</p>
+      </a>
+      <a href="bob.html" class="flex flex-col items-center fade-in fade-in-delay-2">
+        <div class="w-32 h-32 rounded-full overflow-hidden mb-4">
+          <img src="download (10).jfif" alt="Bob Smith" class="w-full h-full object-cover transform transition-transform hover:scale-105">
+        </div>
+        <h2 class="text-xl font-semibold text-center">Bob Smith</h2>
+        <p class="text-center text-sm text-gray-600">Lead Developer</p>
+        <p class="text-center text-sm text-blue-500">bob@example.com</p>
+      </a>
+      <a href="charlie.html" class="flex flex-col items-center fade-in fade-in-delay-3">
+        <div class="w-32 h-32 rounded-full overflow-hidden mb-4">
+          <img src="download (9).jfif" alt="Charlie Lee" class="w-full h-full object-cover transform transition-transform hover:scale-105">
+        </div>
+        <h2 class="text-xl font-semibold text-center">Charlie Lee</h2>
+        <p class="text-center text-sm text-gray-600">UI/UX Designer</p>
+        <p class="text-center text-sm text-blue-500">charlie@example.com</p>
+      </a>
+      <a href="dana.html" class="flex flex-col items-center fade-in fade-in-delay-4">
+        <div class="w-32 h-32 rounded-full overflow-hidden mb-4">
+          <img src="download (8).jfif" alt="Dana Kim" class="w-full h-full object-cover transform transition-transform hover:scale-105">
+        </div>
+        <h2 class="text-xl font-semibold text-center">Dana Kim</h2>
+        <p class="text-center text-sm text-gray-600">Marketing Head</p>
+        <p class="text-center text-sm text-blue-500">dana@example.com</p>
+      </a>
+    </div>
+
+    <!-- Send Message Section -->
+    <form action="contact-form.php" method="POST" class="bg-white p-6 rounded-2xl shadow max-w-2xl mx-auto space-y-4 fade-in fade-in-delay-4">
+      <input type="text" name="name" placeholder="Your Name" class="w-full border p-3 rounded-md input-field" required>
+      <input type="email" name="email" placeholder="Your Email" class="w-full border p-3 rounded-md input-field" required>
+      <textarea name="message" placeholder="Your Message" rows="5" class="w-full border p-3 rounded-md input-field" required></textarea>
+      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-md button-hover">Send Message</button>
+    </form>
+  </div>
+
+  <script>
+    // Trigger curtain opening effect after 2 seconds
+    setTimeout(function() {
+      document.querySelector('.curtain-container').classList.add('opened');
+      // Change to multicolor background after curtain effect
+      setTimeout(function() {
+        document.body.classList.add('multicolor-background');
+      }, 2000); // After curtain animation ends, start the gradient
+    }, 2000); // Start curtain animation after 2 seconds
+  </script>
+</body>
+</html>

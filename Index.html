@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="Index.css">
+    <title>Homepage</title>
+    <style>
+        .shop-now-btn {
+            background-color: #1d4ed8;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .shop-now-btn:hover {
+            background-color: #2563eb;
+            transform: translateX(5px);
+        }
+
+        .shop-now-btn span {
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .shop-now-btn:hover span {
+            transform: translateX(4px);
+        }
+
+        /* New style for clicked button */
+        .clicked {
+            background-color: #16a34a !important; /* green */
+        }
+
+        /* Animation keyframes for slide up */
+        @keyframes slideUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Apply animation to heading and paragraph */
+        .center-div h1 {
+            animation: slideUp 1s ease-out;
+        }
+
+        .center-div p {
+            animation: slideUp 1s ease-out;
+            animation-delay: 0.3s;
+            animation-fill-mode: both;
+        }
+    </style>
+
+    <script>
+        function handleShopNowClick(button) {
+            button.classList.add("clicked");
+            setTimeout(() => {
+                window.location.href = 'signuppage.html';
+            }, 200); // slight delay to show color change before redirect
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"> </div>
+        <div class="navbar-links">
+            <a href="Index.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="Index.html">More</a>
+            <a href="Contact us.html">Contact us</a>
+            <a href="apod.html">Help</a>
+        </div>
+        <button onclick="location.href='signuppage.html'" class="signup-btn">Profile</button>
+        <button onclick="location.href='loginpage.html'" class="login-btn">Sign in/Register</button>
+    </div>
+
+    <video class="Video_Background" autoplay muted loop>
+        <source src="InShot_20250208_044215950.mp4" type="video/mp4">
+    </video>
+
+    <div class="center-div">
+        <h1>A little space for everyone</h1>
+        <p>Welcome to the world of new technology<br>How we can assist us</p>
+
+        <!-- 🛍️ Shop Now Button -->
+        <button onclick="handleShopNowClick(this)" class="shop-now-btn">
+            Shop Now <span>></span>
+        </button>
+    </div>
+</body>
+</html>
